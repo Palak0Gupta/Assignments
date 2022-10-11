@@ -1,0 +1,312 @@
+1.package java_Stream9;
+
+public class Fruit 
+{
+	String name;
+	int calories;
+	int price;
+	String color;
+	public Fruit(String name, int calories, int price, String color) {
+		super();
+		this.name = name;
+		this.calories = calories;
+		this.price = price;
+		this.color = color;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getCalories() {
+		return calories;
+	}
+	public void setCalories(int calories) {
+		this.calories = calories;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
+	
+	
+
+}
+----------------------------------------------------------
+package java_Stream9;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Fruit_Test {
+
+	public static void main(String[] args)
+	{
+     List<Fruit> l1= new ArrayList<Fruit>();
+		
+		l1.add(new Fruit("bananna",110, 60, "yellow"));
+		l1.add(new Fruit("apple",90, 80, "red"));
+		l1.add(new Fruit("mango",150, 90, "red"));
+		l1.add(new Fruit("grapes",80, 60, "green"));
+		l1.add(new Fruit("pineapple",130, 100, "yellow"));
+		
+		System.out.println("fruit names with < 100 calories");
+		l1.stream()
+		.filter(n->n.calories<100)
+		.forEach(pr->System.out.println(pr.name+"  "+pr.calories));
+		
+		System.out.println("----------------------------------------");
+		System.out.println(" ");
+		System.out.println("displaying red color fruits");
+		l1.stream()
+		.filter(n->n.color == "red")
+		.forEach(pr->System.out.println(pr.name+" "+pr.color));
+		System.out.println("----------------------------------------");
+		System.out.println(" ");
+		 System.out.println("Display color wise fruit name");
+	       l1.stream().
+	       sorted((p1,p2) -> p1.getColor()
+	       .compareTo(p2.getColor()))
+	       .forEach(pr->System.out.println(pr.getColor()+"  "+pr.getName()));
+	       System.out.println("----------------------------------------");
+			System.out.println(" ");
+			System.out.println("sorted based on price in ascending order");
+	        l1.stream()
+	        .sorted((p1,p2) -> p1.getPrice() - p2.getPrice())
+	        .forEach(pr->System.out.println(pr.getPrice()+" "+pr.getName()));
+		
+
+	}
+
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+2.
+package java_Stream9;
+
+public class Trader 
+{
+	String name;
+	String city;
+	public Trader(String name, String city) {
+		super();
+		this.name = name;
+		this.city = city;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	
+	
+
+}
+-----------------------------------------------
+package java_Stream9;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Trader_Test {
+
+	public static void main(String[] args)
+	{
+		List<Trader> l1= new ArrayList<Trader>();
+		
+		l1.add(new Trader("Palak" , "Raipur"));
+		l1.add(new Trader("Sarika" , "Nagpur"));
+		l1.add(new Trader("Ganesh" , "Hyderabad"));
+		l1.add(new Trader("Aish" , "Mumbai"));
+		l1.add(new Trader("Pooja" , "Pune"));
+		
+		System.out.println("Unique cities where trader works"); 
+		 l1.stream().map(n -> n.getCity()).distinct().forEach(System.out::println); 
+		 
+		 System.out.println("finding all traders from Raipur and sort them by name"); 
+		 l1.stream().filter(n->n.getCity()=="Raipur").map(s->s.getName()).forEach(System.out::println);
+		 
+	     System.out.println(" return a string of all trader names sorted alphabetically"); 
+	     l1.stream().map(n->n.getName()).sorted().forEach(System.out::println);
+		
+		
+		
+
+	}
+
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+3.
+package java_Stream9;
+
+public class News
+{
+	int newsid;
+	String postedbyuser;
+	String commentbyuser;
+	String comment;
+	public News(int newsid, String postedbyuser, String commentbyuser, String comment) {
+		super();
+		this.newsid = newsid;
+		this.postedbyuser = postedbyuser;
+		this.commentbyuser = commentbyuser;
+		this.comment = comment;
+	}
+	public int getNewsid() {
+		return newsid;
+	}
+	public void setNewsid(int newsid) {
+		this.newsid = newsid;
+	}
+	public String getPostedbyuser() {
+		return postedbyuser;
+	}
+	public void setPostedbyuser(String postedbyuser) {
+		this.postedbyuser = postedbyuser;
+	}
+	public String getCommentbyuser() {
+		return commentbyuser;
+	}
+	public void setCommentbyuser(String commentbyuser) {
+		this.commentbyuser = commentbyuser;
+	}
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+	
+	
+
+}
+-----------------------------------------------------------------
+package java_Stream9;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class News_Test {
+
+	public static void main(String[] args) 
+	{
+		List<News> l1= new ArrayList<>();
+		l1.add(new News(101,"Palak","Sarika","verylow buget"));
+		l1.add(new News(101,"Aishwarya","Avinash","comment is low"));
+		l1.add(new News(101,"Ganesh","Bharat","please find the buget information"));
+		l1.add(new News(101,"pragati","Pooja","no comments,only likes"));
+		
+		System.out.println("counting the world budget in comment");
+		int count=(int) l1.stream().filter(s->s.comment.contains("buget")).count();
+		System.out.println(count);
+		
+
+	}
+
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+4.
+package demoTest;
+
+public class Transection 
+{
+	public Trader trader;
+	int year;
+	int value;
+	
+	public Transection(Trader trader, int year, int value) {
+		super();
+		this.trader = trader;
+		this.year = year;
+		this.value = value;
+	}
+	public Trader getTrader() {
+		return trader;
+	}
+	public void setTrader(Trader trader) {
+		this.trader = trader;
+	}
+	public int getYear() {
+		return year;
+	}
+	public void setYear(int year) {
+		this.year = year;
+	}
+	public int getValue() {
+		return value;
+	}
+	public void setValue(int value) {
+		this.value = value;
+	}
+	@Override
+	public String toString() {
+		return "Transection [trader=" + trader + ", year=" + year + ", value=" + value + "]";
+	}
+	
+	
+
+}
+-----------------------------------------------------------------
+package demoTest;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+
+public class Transection_Test {
+
+	public static void main(String[] args) 
+	{
+		List<Transection> list = new ArrayList<>();
+		
+		Trader t1 = new Trader("Palak", "Raipur");
+		Trader t2 = new Trader("Aishwarya", "Pune");
+		Trader t3 = new Trader("Pooja", "Pune");
+		Trader t4 = new Trader("Ganesh", "Delhi");
+		
+		list.add(new Transection(t1 , 2011,12));
+		list.add(new Transection(t2 , 2011,89));
+		list.add(new Transection(t3 , 2011,90));
+		list.add(new Transection(t4 , 2014,78));
+		
+		
+		System.out.println("Trader who living in delhi");
+		list.stream().filter(obj->obj.trader.getCity().contains("Delhi"))
+		.forEach(System.out::println);
+		
+		System.out.println("highest value of all transections ");
+		
+		Optional<Integer> m = list.stream().map(n->n.getValue()).max((o1,o2)->o1.compareTo(o2));
+		System.out.println(m.get());
+		
+       System.out.println("smallest value of all transections ");
+		
+		Optional<Integer> m1 = list.stream().map(n->n.getValue()).min((o1,o2)->o1.compareTo(o2));
+		System.out.println(m1.get());
+		
+		System.out.println("2011 , or sort by value");
+		
+		list.stream().filter(n->n.getYear()== 2011).sorted((o1,o2)->o1.getValue()-o2.getValue()).forEach(System.out::println);
+		System.out.println(" ");
+		list.stream().filter(n->n.getYear()== 2011).sorted(Comparator.comparing(Transection::getValue).reversed()).forEach(System.out::println);
+		
+	}
+
+}
+---------------------------------------------------------------------------------------------------------------------------------
