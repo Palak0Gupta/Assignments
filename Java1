@@ -1,1 +1,366 @@
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1.
+package javaAssessment1;
 
+import java.util.Scanner;
+
+public class ArmstrongNo 
+{
+	void armstrong()
+	{
+		int n1,n2,temp,arm=0;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter any number : ");
+		n1=sc.nextInt();
+		n2=n1;
+		while(n2>0)
+		{
+			temp=n2%10;
+			arm=arm+(temp*temp*temp);   //153 1
+			n2=n2/10;
+		}
+		if(n1==arm)
+		{
+			System.out.println(arm+ " is a armstrong number");
+		}
+		else {
+			System.out.println(n1+ " is not a armstrong number");
+		}
+	}
+
+	public static void main(String[] args) 
+	{
+		ArmstrongNo a = new ArmstrongNo();
+		a.armstrong();
+		
+
+	}
+
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2.
+package javaAssessment1;
+
+import java.util.Scanner;
+
+public class Armstrong_range {
+
+	public static void main(String[] args) {
+		int num1, num2;
+	      Scanner sc = new Scanner(System.in);
+	      System.out.println("Enter the first number ::");
+	      num1 = sc.nextInt();
+	      System.out.println("Enter the second number ::");
+	      num2 = sc.nextInt();
+
+	      for (int i = num1; i<num2; i++){
+	         int check, rem, sum = 0;
+	         check = i;
+	         while(check != 0) {
+	            rem = check % 10;
+	            sum = sum + (rem * rem * rem);
+	            check = check / 10;
+	         }
+	         if(sum == i){
+	            System.out.println(""+i+" is an Armstrong number.");
+	         }
+	      }
+	   }
+
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3.
+package javaAssessment1;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Array_Search {
+
+	public static void main(String[] args)
+	{
+int arr[] = {5,12,14,6,78,19,1,23,26,35,37,7,52,86,47};
+		
+		//display array and user input
+		System.out.println(Arrays.toString(arr));
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter a number to search in array : ");
+		int n = scanner.nextInt();
+		
+		//array search
+		for(int i = 0; i< arr.length; i++)
+		{
+			if(arr[i] == n)
+			{
+				System.out.println(n + " is found in the array at " + i + "th index.");
+			}
+		}
+		
+
+	}
+
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+4.
+package javaAssessment1;
+
+import java.util.Scanner;
+
+public class Avg_Marks {
+
+	public static void main(String[] args) 
+	{
+		Scanner scanner = new Scanner(System.in);
+		double a[][] = new double[3][3];
+		double total = 0; 
+		
+		System.out.println("Enter the marks ");
+		
+		//user input array
+		for (int i=0;i<3;i++) 
+		{
+			for (int j=0;j<3;j++) 
+			{
+				a[i][j]=scanner.nextInt() ;
+			}
+		}
+		
+		//add all marks
+		for (int i=0;i<3;i++) 
+		{
+			for (int j=0;j<3;j++) 
+			{
+					total += a[i][j];
+			}
+		}
+		
+		//average all marks
+		System. out. println("Total marks in all subjects is: "+ total);
+		System. out. println("Average marks in all subjects is: "+ total/9) ;
+		
+		total = 0;
+		
+		//add individual marks
+		for (int i=0;i<3;i++) 
+		{
+			total=0;
+			for (int j=0;j<3;j++) 
+			{
+					total += a[i][j];
+			}
+		
+			//average individual marks
+			System.out.println();
+			System. out. println("Total marks for student "+ (i+1) +" of each subject is: "+ total) ;
+			System. out. println("Average marks for student "+ (i+1) +" of each subject is: "+ total/3);
+			System.out.println();
+			
+			total = 0;
+		}
+
+	}
+
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+5.
+package javaAssessment1;
+
+import java.util.Arrays;
+
+public class Bubble_Sort {
+
+	public static void main(String[] args)
+	{
+		int arr[] = {5,12,14,6,78,19,1,23,26,35,37,7,52,86,47}, temp;
+		System.out.println(Arrays.toString(arr));
+		
+		//bubble sort algorithm
+		for(int i = 0; i < arr.length-1; i++)
+		{
+			for(int j = 0; j < arr.length - i - 1; j++)
+			{
+				if(arr[j] > arr[j+1])
+				{
+					temp = arr[j];
+					arr[j] = arr[j+1];
+					arr[j+1] = temp;
+				}
+			}
+		}
+		
+		//display
+		System.out.println("Sorted Array :");
+		System.out.println(Arrays.toString(arr));
+		
+
+	}
+
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+6.
+package javaAssessment1;
+
+import java.util.Scanner;
+
+public class Condition_Class {
+
+	public static void main(String[] args)
+	{
+      double sub1, sub2, sub3;
+		
+		//declaring scanner object
+		Scanner scanner = new Scanner(System.in);
+		
+		//user input
+		System.out.println("Enter marks in subject 1: ");
+		sub1 = scanner.nextDouble();
+		System.out.println("Enter marks in subject 2: ");
+		sub2 = scanner.nextDouble();
+		System.out.println("Enter marks in subject 3: ");
+		sub3 = scanner.nextDouble();
+		
+		//conditions
+		if(sub1 > 60 && sub2 > 60 && sub3 > 60)
+		{
+			System.out.println("Passed");
+		}
+		else if((sub1 >60 && sub2 >60) || (sub2 >60 && sub3 >60) || (sub1 >60 && sub3 >60))
+		{
+			System.out.println("Promoted");
+		}
+		else
+		{
+			System.out.println("Failed");
+		}
+
+	}
+
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+7.
+package javaAssessment1;
+
+import java.util.Scanner;
+
+public class Income_Tax {
+
+	public static void main(String[] args) {
+		double tax =  0, CTC;
+	   	
+	   	//user input
+	   	Scanner scanner = new Scanner(System.in);
+	   	System.out.println("Enter income : ");
+	   	CTC = scanner.nextDouble();
+	   	
+	   	//conditions
+	   	if(CTC <= 180000)
+	   	{
+	   		tax = 0;
+	   	}
+	   	else if(CTC > 180000 && CTC <= 300000)
+	   	{
+	   		//tax calculation
+	   		tax = (CTC/100)*10;
+	   		System.out.println("Income tax payable is : " + tax);
+	   	}
+	   	else if(CTC > 300000 && CTC <= 500000)
+	   	{
+	   		//tax calculation
+	   		tax = (CTC/100)*20;
+	   		System.out.println("Income tax payable is : " + tax);
+	   	}
+	   	else if(CTC > 500000 && CTC <= 1000000)
+	   	{
+	   		//tax calculation
+	   		tax = (CTC/100)*30;
+	   		System.out.println("Income tax payable is : " + tax);
+	   	}	
+
+	}
+
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+8.
+package javaAssessment1;
+
+import java.util.Scanner;
+
+public class Login_User {
+
+	public static void main(String[] args)
+	{
+		String name, password;
+		int count = 0, itr, track = 0;
+		
+		//while loop for checking and exiting after attempts are complete or logged in successfully
+		while(count<3 && track == 0)
+		{
+			//user input
+			Scanner scanner = new Scanner(System.in);
+			System.out.println("Enter the login name : ");
+			name = scanner.nextLine();
+			System.out.println("Enter password : ");
+			password = scanner.nextLine();
+			
+			//validation
+			if(name.equals("Palak") && password.equals("gupta"))
+			{
+				//login success tracker
+				track = 1;
+				System.out.println("Welcome " + name);
+			}
+			else
+			{	
+				//attempt count
+				count++;
+				itr = 3-count;
+				System.out.println("Try Again. Remaining attempts " + itr);
+				
+				if(itr == 0)
+				{
+					System.out.println("Contact Admin");
+				}
+			}	
+		}
+		
+
+	}
+
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+9.
+package javaAssessment1;
+
+import java.util.Scanner;
+
+public class SC_Intrest {
+
+	public static void main(String[] args) 
+	{
+double rate, amount, years, simple, compound;
+		
+		//declaring scanner object
+		Scanner scanner = new Scanner(System.in);
+		
+		//user input
+		System.out.println("Enter the amount : ");
+		amount = scanner.nextDouble();
+		System.out.println("Enter the rate : ");
+		rate = scanner.nextDouble();
+		System.out.println("Enter no. of years : ");
+		years = scanner.nextDouble();
+		
+		//implementing the equations for SI and CI
+		simple = (rate * years * amount)/ 100;
+		compound = amount * Math.pow(1 + rate/100, years) - amount;
+		
+		//display
+		System.out.println("Simple Interest : "+simple);
+		System.out.println("compound Interest : "+compound);
+		
+
+	}
+
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
