@@ -1,0 +1,39 @@
+package annotation_Assignment7;
+import java.lang.annotation.Annotation;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import java.lang.reflect.Method;
+
+@Retention (RetentionPolicy.RUNTIME)  
+@Target (ElementType.METHOD)  
+@interface Test
+{  
+	String str();  
+}  
+
+class First 
+{
+	@Test(str="Test Annotation")  
+	public void testCase() 
+	{
+		
+	}  
+
+}
+
+public class TestAnnotation {
+
+	public static void main(String[] args) throws Exception 
+	{
+		First f=new First();  
+		Method m = f.getClass().getMethod("testCase");  
+	
+		Test ts = m.getAnnotation(Test.class);  
+		System.out.println(ts.str()); 
+		
+
+	}
+
+}
