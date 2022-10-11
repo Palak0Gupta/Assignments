@@ -1,0 +1,291 @@
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+1.
+package collectionAssignment6;
+
+public class Contact 
+{
+	String name;
+	String email;
+	long phoneNo;
+	enum gender { male , female};
+	gender gen;
+	
+	public Contact(String name, String email, gender gen) {
+		super();
+		this.name = name;
+		this.email = email;
+		//this.phoneNo = phoneNo;
+		this.gen = gen;
+	}
+
+	@Override
+	public String toString() {
+		return "Contact [name=" + name + ", email=" + email + ", gen=" + gen + "]";
+	}
+
+	
+	
+	
+	
+	
+
+}
+----------------------
+package collectionAssignment6;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+import collectionAssignment6.Contact.gender;
+
+public class ContactTest {
+
+	public static void main(String[] args) 
+	{
+		Map<Long,Contact> map = new HashMap<>();
+		Contact c1 = new Contact("Palak","palak@gmail.com",gender.female);
+		Contact c2 = new Contact("Sarika","sarika@gmail.com",gender.female);
+		Contact c3 = new Contact("Bharat","bharat@gmail.com",gender.male);
+		Contact c4 = new Contact("Ganesh","ganesh@gmail.com",gender.male);
+		map.put((long) 12345678, c1);
+		map.put((long) 129905678, c2);
+		map.put((long) 1234995678, c3);
+		map.put((long) 1234560778, c4);
+		
+		
+		System.out.println("Keys");
+        Set<Long> keys=map.keySet();
+        for(long key:keys) {
+            System.out.println(key);
+        }
+        
+        System.out.println("");
+        System.out.println("Values");
+        Collection<Contact> values= map.values();
+        for(Contact value:values) {
+            System.out.println(value);
+        }
+        
+        System.out.println(" ");
+        System.out.println("Key and values");
+        for(Map.Entry m : map.entrySet()){    
+            System.out.println(m.getKey()+" "+m.getValue().toString());    
+           }  
+
+
+	}
+
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+2.
+package collectionAssignment6;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.LinkedList;
+
+public class LeapYear {
+
+	public static void main(String[] args) {
+		
+		LocalDate date1 = LocalDate.of(2000, 07, 26);
+		LocalDate date2 = LocalDate.of(2017, 11, 7);
+		LocalDate date3 = LocalDate.of(1999, 10, 11);
+		
+		LinkedList<LocalDate> list = new LinkedList<LocalDate>();
+		
+		list.add(date1);
+		list.add(date2);
+		list.add(date3);
+		
+		for(LocalDate l : list)
+		{
+			String printDate = l.format(DateTimeFormatter.ofPattern("dd-MM-YYYY"));
+			
+			if(l.isLeapYear())
+			{
+				System.out.println("Your Date of Birth is " + printDate + " and it was a leap year");
+			}
+			else
+			{
+				System.out.println("Your Date of Birth is " + printDate + " and it was not a leap year");
+			}
+		}
+
+	}
+
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+3.
+package collectionAssignment6;
+
+import java.util.*;
+
+class Options {
+	
+	private int id;
+	private int salary;
+	private String name;
+	private String department;
+	
+	public Options(int id, int salary, String name, String department)
+	{
+		this.id = id;
+		this.salary = salary;
+		this.name = name;
+		this.department = department;
+	}
+	
+	public String getName()
+	{
+		return name;
+	}
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+	public String getDep()
+	{
+		return department;
+	}
+	public void setDep(String department)
+	{
+		this.department = department;
+	}
+	
+	public int getId()
+	{
+		return id;
+	}
+	public int getSalary()
+	{
+		return salary;
+	}
+
+}
+
+class IdCompare implements Comparator<Options>
+{
+	
+	public int compare(Options o1, Options o2)
+	{
+		return o1.getId() - o2.getId();
+	}
+
+}
+
+class NameCompare implements Comparator<Options>
+{
+	
+	public int compare(Options o1, Options o2)
+	{
+		return o1.getName().compareTo(o2.getName());
+	}
+
+}
+
+class DepComapre implements Comparator<Options>
+{
+	
+	public int compare(Options o1, Options o2)
+	{
+		return o1.getDep().compareTo(o2.getDep());
+	}
+
+}
+
+class SalaryCompare implements Comparator<Options>{
+
+	public int compare(Options o1, Options o2)
+	{
+		return o1.getSalary() - o2.getSalary();
+	}
+	
+}
+
+public class TestCompare {
+
+	public static void main(String[] args) {
+		
+		Scanner scan = new Scanner(System.in);
+		System.out.println("You want to sort in order of \n\n1.ID\n2.Name\n3.Department\n4.Salary\n\nEnter your option: ");
+		int option = scan.nextInt();
+		
+		switch(option)
+		{
+		case 1:
+			TreeSet<Options> set = new TreeSet<Options>(new IdCompare());
+			
+			set.add(new Options(1,23000,"Palak","A"));
+			set.add(new Options(2,32000,"Sarika","C"));
+			set.add(new Options(3,13000,"Aish","F"));
+			
+			System.out.println(" Increasing Order with the Id : ");
+			
+			for(Options o : set)
+			{
+				System.out.print(o.getId()+","+o.getName()+","+o.getDep()+","+o.getSalary());
+				System.out.println();
+			}
+			
+			break;
+			
+		case 2:
+			TreeSet<Options> setN = new TreeSet<Options>(new NameCompare());
+			
+			setN.add(new Options(1,23000,"Palak","A"));
+			setN.add(new Options(2,32000,"Sarika","C"));
+			setN.add(new Options(3,13000,"Aish","F"));
+			
+			System.out.println(" Increasing Order with the Name : ");
+			
+			for(Options o : setN)
+			{
+				System.out.print(o.getId()+","+o.getName()+","+o.getDep()+","+o.getSalary());
+				System.out.println();
+			}
+			
+			break;
+		
+		case 3:
+			TreeSet<Options> setD = new TreeSet<Options>(new DepComapre());
+			
+			setD.add(new Options(1,23000,"Palak","A"));
+			setD.add(new Options(2,32000,"Sarika","C"));
+			setD.add(new Options(3,13000,"Aish","F"));
+			
+			System.out.println(" Increasing Order with the Department : ");
+			
+			for(Options o : setD)
+			{
+				System.out.print(o.getId()+","+o.getName()+","+o.getDep()+","+o.getSalary());
+				System.out.println();
+			}
+			
+			break;
+			
+		case 4:
+			TreeSet<Options> setS = new TreeSet<Options>(new SalaryCompare());
+			
+			setS.add(new Options(1,23000,"Palak","A"));
+			setS.add(new Options(2,32000,"Sarika","C"));
+			setS.add(new Options(3,13000,"Aish","F"));
+			
+			System.out.println(" Increasing Order with the Salary : ");
+			
+			for(Options o : setS)
+			{
+				System.out.print(o.getId()+","+o.getName()+","+o.getDep()+","+o.getSalary());
+				System.out.println();
+			}
+			
+			break;
+		
+		}
+		
+		
+	}
+
+}
