@@ -1,0 +1,278 @@
+1.
+package java8Assignment8;
+
+interface Example
+{
+	public int operation(int a , int b);
+}
+
+public class ArithmeticOperation {
+
+	public static void main(String[] args) 
+	{
+		Example add = (a,b)->
+		{
+			return a+b;
+		};
+		Example sub = (a,b)->
+		{
+			return a-b;
+		};
+		Example mul = (a,b)->
+		{
+			return a*b;
+		};
+		Example div = (a,b)->
+		{
+			return a/b;
+		};
+		System.out.println("Addition :  "+add.operation(10, 20));
+		System.out.println("Substraction :  "+sub.operation(40, 20));
+		System.out.println("Multiplication :  "+mul.operation(10, 20));
+		System.out.println("Division :  "+div.operation(40, 20));
+		
+
+	}
+
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+2.
+package java8Assignment8;
+
+interface Orderable
+{
+	public int order(int amount);
+}
+
+public class ConditionTest {
+
+	public static void main(String[] args) 
+	{
+		Orderable or = (amount)->
+		{
+			if(amount>10000)
+			{
+				System.out.println("Your Order Status is now Accepted");
+			}
+			else
+			{
+				System.out.println("Sorry ! Your Order Status is Rejected ");
+			}
+			return amount;
+		};
+		
+		System.out.println(or.order(15000));
+
+	}
+
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+3.
+package java8Assignment8;
+
+import java.util.function.Consumer;
+
+class Person
+{
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+}
+public class ConsumerEx {
+
+	public static void main(String[] args)
+	{
+		Person p = new Person();
+		Consumer<Person> set_Name = t->t.setName("Palak Gupta");
+		set_Name.accept(p);
+		System.out.println(p.getName());
+
+	}
+
+}
+---------------------------------------------
+package java8Assignment8;
+
+import java.util.function.Function;
+
+public class FunctionEx {
+
+	public static void main(String[] args) {
+		Function<Integer,String> getInt = t->t*10+ " Data multiplied by 10";
+		System.out.println(getInt.apply(4));
+
+	}
+
+}
+------------------------------------------------
+package java8Assignment8;
+
+import java.util.function.Predicate;
+
+public class PredicateEx {
+
+	public static void main(String[] args) {
+		Predicate<String> checkLength = str->str.length()>5;
+		System.out.println(checkLength.test("Palakhu"));
+
+	}
+
+}
+-------------------------------------------------
+package java8Assignment8;
+
+import java.util.function.Supplier;
+
+public class SupplierEx {
+
+	public static void main(String[] args) {
+		Supplier<Double> g_random = ()->Math.random();
+		System.out.println(g_random.get());
+
+	}
+
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+4.
+package java8Assignment8;
+
+import java.util.Map;
+import java.util.TreeMap;
+
+public class EntrySetDe {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		StringBuilder str=new StringBuilder();  
+		Map<Integer,String> map = new TreeMap<>();
+		map.put(1, "Hello");
+		map.put(2, "Guys");
+		map.put(3, "How");
+		map.put(4, "Are");
+		map.put(5, "You");
+		map.put(6, "Doing");
+		map.put(7, "In");
+		map.put(8, "Training");
+		
+		for(Map.Entry<Integer,String>entry:map.entrySet()) {
+					
+			Integer key = entry.getKey();
+			String c = entry.getValue();
+			str.append(key + c);
+		}
+		//print result string
+		System.out.println(" " +str+ " ");
+	}
+
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+5.
+package java8Assignment8;
+
+import java.util.ArrayList;
+import java.util.function.Consumer;
+
+public class FirstLetter {
+
+	public static void main(String[] args) {
+		ArrayList<String>words=new ArrayList<String>();
+		words.add("hi");
+		words.add("Hey");
+		words.add("Hello");
+		words.add("good");
+		words.add("bad");
+		words.add("three");
+		Consumer <String> print=(str)->System.out.print(str.charAt(0));
+		words.forEach(print);
+
+	}
+
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+6.
+package java8Assignment8;
+
+import java.util.ArrayList;
+
+public class RemoveOdd {
+
+	public static void main(String[] args) 
+	{
+		ArrayList<String> list = new ArrayList<>();
+		list.add("hi");
+		list.add("hello");
+		list.add("hi!how!are!you");
+		list.add("hello!HOw!are!You");
+		list.add("bye");
+		list.add("Byebye");
+		list.removeIf(n->(n.length()%2 != 0));
+		for(String s : list)
+		{
+			System.out.println(s);
+		}
+		
+		
+		
+
+	}
+
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+7.
+package java8Assignment8;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ThreadDemo {
+
+	public static void main(String[] args) {
+		List<Integer> num=new ArrayList<Integer>(){{
+            add(11);
+            add(55);
+            add(37);
+            add(95);
+            add(99);
+        }};
+        
+        Thread mylambda = new Thread(()->System.out.println(num));
+        mylambda.run();
+	}
+
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+8.
+package java8Assignment8;
+
+import java.util.ArrayList;
+import java.util.function.UnaryOperator;
+
+class Operation implements UnaryOperator<String> {
+	   public String apply(String str) {
+	      return str.toUpperCase();
+	   }
+}
+
+public class UnaryOperatorDemo {
+
+	public static void main(String[] args) {
+		ArrayList<String> list = new ArrayList<>();
+	      list.add("Java");
+	      list.add("JavaScript");
+	      list.add("c++");
+	      list.add("Html");
+	      list.add("Dotnet");
+	      System.out.println("Contents of the list: "+list);
+	      list.replaceAll(new Operation());
+	      System.out.println("Contents of the list after replace operation: \n"+list);
+
+	}
+
+}
