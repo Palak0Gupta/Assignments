@@ -1,0 +1,155 @@
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1.
+package genericsAssignment5;
+
+import java.util.HashSet;
+
+class Employee {
+	  
+    int id;
+    String name,dep;
+    double sal;
+    public Employee(int id, String name, String dep, double sal) 
+    {
+        
+        this.id = id;
+        this.name = name;
+        this.dep = dep;
+        this.sal=sal;
+    }
+    public void Displaydetails() {
+    	System.out.println(id+" "+name+" "+dep+" "+sal);
+    }
+}
+
+
+public class Hash {
+  
+   public static void main(String[] args)
+   {
+      HashSet<Employee>set=new HashSet<Employee>();
+      Employee e=new Employee(1,"Palak","TAX",25000.0);
+      set.add(e);
+      for(Employee e1:set)
+      {
+         e.Displaydetails();
+      }
+   }
+  
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+2.
+package genericsAssignment5;
+
+import java.util.HashMap;
+import java.util.Map;
+public class MapDemo {
+     public static void main(String[] args)
+     { 
+	        Map<Integer,Double> m = new HashMap<>();
+       
+          m.put(34, 33.9);
+          m.put(67, 67.7);
+          m.put(96, 56.7);
+          m.put(35, 3.5);
+          m.put(11, 33.9);
+          m.put(25, 5.9);
+          m.put(99, 89.8);
+          m.put(56, 23.5);
+          m.put(84, 98.5);
+          m.put(54, 87.6);
+       
+	        System.out.println(m);
+	     
+     }
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+3.
+package genericsAssignment5;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+
+public class Swap {
+		public static final <T> void swap (T[] a, int i, int j) {
+			T t = a[i];
+			a[i] = a[j];
+			a[j] = t;
+		}
+		private static void test() {
+				String [] arr = {"My", "Name", "Is", "Palak"};
+				System.out.println("Original Array: "+Arrays.toString(arr));
+				swap(arr, 0,3);
+				System.out.println("Swapped Array: "+Arrays.toString(arr));
+		
+		}
+		public static void main(String...args)
+		{
+				test();
+		}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+4.
+package _Generic;
+
+ interface GInterface<E> {
+	void setValue(E e);
+	E getValue();
+}
+
+public class Pair<E,K> implements GInterface<E>
+{
+	private E e;
+	private K k;
+
+	@Override
+	public void setValue(E e) {
+		this.e=e;
+		
+	}
+
+	@Override
+	public E getValue() {
+		
+		return e;
+	}
+	
+	public K getK() {
+		return k;
+	}
+	public void setK(K k) {
+		this.k = k;
+	}
+	
+
+}
+---------------------------------------
+package _Generic;
+
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Pairs {
+
+	public static void main(String[] args) {
+		HashMap<String,String> obj1=new HashMap<>();
+		Pair<String,String> p1=new Pair();
+		
+		Scanner sc= new Scanner(System.in);
+		
+		System.out.println("Enter property key1 : ");
+		p1.setK(sc.nextLine());
+		String k1 = p1.getK();
+		System.out.println("Enter property value :");
+		p1.setValue(sc.nextLine());
+		String val1=p1.getValue();
+		//keypairs
+		obj1.put(k1, val1);
+		System.out.println(obj1);
+
+	}
+
+}
